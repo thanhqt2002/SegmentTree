@@ -46,7 +46,7 @@ private:
       	if(low == high){
                 fina[low] = max(val,a[x]);
                 return;
-            }
+        }
         int mid = (low + high) / 2;
         query(x * 2, low , mid , max(val,a[x]));
         query(2 * x + 1 , mid + 1 , high , max(val,a[x]));
@@ -69,7 +69,7 @@ public:
         n = _n;
         chk.assign(n + 5 , 0);
         fina.assign(n + 5 , 0);
-        a.assign(10 * n + 5,0);
+        a.assign(4 * n + 5,0);
     }
     void update(int l1 ,int h1,int val){
         l = l1;h = h1;
@@ -88,31 +88,21 @@ Tpair a[maxn];
 void solve()
 {
     n = read();
-    s.clear();
     for(int i = 1 ; i <= n ; ++i){
         int x , y;
         x = read();y = read();
         a[i] = make_pair(x,y);
-        s.insert(x);s.insert(y);
     }
-    int n1 = 1;
-    chk.clear();
-    for(set<int>::iterator c = s.begin(); c != s.end() ; ++c){
-        chk[*c] = n1;
-        n1++;
-    }
-    n1--;
+    TSegment tree((int)1e7);
     for(int i = 1 ; i <= n ; ++i){
-        a[i] = make_pair(chk[a[i].first] , chk[a[i].second]);
-    }
-    TSegment tree(n1);
-    for(int i = 1 ; i <= n ; ++i){
-        tree.update(a[i].first , a[i].second , i);
+        cout << a[i].first << " " << a[i].second << endl;
+        tree.update(a[i].first , a[i].second, i);
     }
     cout << "Case " << Ntest << ": " << tree.query() << '\n';
 }
 int main()
 {
+    FAST;
     int t;
     t = read();
     for(Ntest = 1 ; Ntest <= t ; Ntest++)solve();
