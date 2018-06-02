@@ -34,10 +34,8 @@ int  read() {
 		val = val * 10 + ch - '0';
 	return sign * val;
 }
-map<int,int> chk;
 typedef pair<int,int> Tpair;
 int n , Ntest;
-set<int> s;
 struct TSegment{
 private:
     int n , l , h;
@@ -95,10 +93,11 @@ void solve()
     }
     TSegment tree((int)1e7);
     for(int i = 1 ; i <= n ; ++i){
-        cout << a[i].first << " " << a[i].second << endl;
+        //cout << a[i].first << " " << a[i].second << endl;
         tree.update(a[i].first , a[i].second, i);
     }
-    cout << "Case " << Ntest << ": " << tree.query() << '\n';
+    //cout << "Case " << Ntest << ": " << tree.query() << '\n';
+    cout << tree.query() << '\n';
 }
 int main()
 {
